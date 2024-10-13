@@ -336,7 +336,7 @@ pub fn emit_client_inputs(
                     .await
                     .unwrap();
             }
-            println!(">>>>>>>>> TIME: {}", t0.elapsed().as_secs_f32());
+            // println!(">>>>>>>>> TIME: {}", t0.elapsed().as_secs_f32());
         });
     }
 }

@@ -2,9 +2,6 @@ use envconfig::Envconfig;
 
 #[derive(Envconfig, serde::Deserialize, Debug, Clone)]
 pub struct Config {
-    #[envconfig(from = "REDIS_ADDR", default = "redis://127.0.0.1")]
-    pub redis_addr: String,
-
     #[envconfig(from = "PARTITIONNER_ADDR", default = "http://localhost")]
     pub partitionner_addr: String,
 

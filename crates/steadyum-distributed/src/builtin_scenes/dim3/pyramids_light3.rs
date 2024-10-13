@@ -97,7 +97,6 @@ pub fn init_world() -> BuiltinScene {
     let ground_size = 50.0;
     let ground_height = 0.1;
 
-    /*
     let rigid_body =
         RigidBodyBuilder::kinematic_position_based().translation(vector![0.0, -ground_height, 0.0]);
     let ground_handle = result.bodies.insert(rigid_body);
@@ -116,7 +115,6 @@ pub fn init_world() -> BuiltinScene {
         }),
     };
     animations.insert(ground_handle, ground_animation);
-     */
 
     /*
      * Create a floor to prevent objects from falling indefinitely.
@@ -148,32 +146,15 @@ pub fn init_world() -> BuiltinScene {
             vector![0.5, 0.5, 1.0],
         );
 
-        // create_wall(
-        //     &mut result.bodies,
-        //     &mut result.colliders,
-        //     vector![x, shift_y, shift_z],
-        //     num_z - 2,
-        //     vector![0.5, 0.5, 1.0],
-        // );
+        create_wall(
+            &mut result.bodies,
+            &mut result.colliders,
+            vector![x, shift_y, shift_z],
+            num_z - 2,
+            vector![0.5, 0.5, 1.0],
+        );
     }
 
-    let num_i = 0; // 8;
-    let num_j = 0; // 8;
-    for i in 0..num_i {
-        for j in 0..num_j {
-            create_spherical_joints(
-                &mut result.bodies,
-                &mut result.colliders,
-                &mut result.impulse_joints,
-                vector![
-                    (i as f32 - num_i as f32 / 2.0) * 10.0,
-                    15.0,
-                    (j as f32 - num_j as f32 / 2.0) * 10.0
-                ],
-                4,
-            );
-        }
-    }
     BuiltinScene {
         context: result,
         animations,

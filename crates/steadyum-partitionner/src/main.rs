@@ -265,7 +265,7 @@ async fn handle_client_inputs(
     State(state): State<AppState>,
     Json(payload): Json<ClientInputRequest>,
 ) {
-    info!("Got clinet input.");
+    // info!("Got clinet input.");
     state.data.inputs_snd.send(payload).await.unwrap();
 }
 
@@ -570,7 +570,7 @@ async fn create_scene(
             };
 
             // FIXME: wait for the runner to be ready.
-            tokio::time::sleep(Duration::from_secs(5)).await;
+            tokio::time::sleep(Duration::from_secs(1)).await;
 
             locked_runners.per_node.insert(payload.scene, vec![runner]);
 
@@ -891,12 +891,12 @@ fn input_handling_loop(state: AppState) {
             let scenes_acks = state.data.scenes_acks.read().await;
             if let Some(scene_acks) = scenes_acks.get(&inputs.scene) {
                 let new_step_limit = inputs.step_id / NUM_INTERNAL_STEPS + 2;
-                println!(
-                    "################# Sim state: {} (old limit: {}, step id: {}) ################",
-                    new_step_limit,
-                    scene_acks.step_limit.load(Ordering::SeqCst),
-                    scene_acks.step_id.load(Ordering::SeqCst)
-                );
+                // println!(
+                //     "################# Sim state: {} (old limit: {}, step id: {}) ################",
+                //     new_step_limit,
+                //     scene_acks.step_limit.load(Ordering::SeqCst),
+                //     scene_acks.step_id.load(Ordering::SeqCst)
+                // );
 
                 scene_acks
                     .step_limit
